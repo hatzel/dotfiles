@@ -1,0 +1,14 @@
+[user]
+	name = Hans Ole Hatzel
+	email = hhatzel@gmail.com
+[color]
+
+[push]
+	default = simple
+[core]
+	editor = vim
+[color]
+	ui = true
+[alias]
+    ls = status
+	ch = checkout
