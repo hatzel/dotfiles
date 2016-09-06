@@ -46,6 +46,7 @@ colorscheme gruvbox
 " =============== Plugin Configurations ===============
 " ctrlP config
 let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
@@ -78,7 +79,7 @@ vnoremap <C-c> "+y
 command! W  write
 
 " tab navigation
-map <S-Tab> :tabnext<CR>
-map <S-Tab> :tabnext<CR>
-nmap <C-S-Tab> :tabnext<CR>
-nmap <C-S-Tab> :tabnext<CR>
+map <S-Tab> :bnext<CR>
+map <C-S-Tab> :bprev<CR>
+nmap <S-Tab> :bnext<CR>
+nmap <C-S-Tab> :bprev<CR>
