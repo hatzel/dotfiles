@@ -24,6 +24,11 @@ Plug 'mitsuhiko/vim-python-combined'
 Plug 'lervag/vimtex'
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
+
+Plug 'mattn/emmet-vim'
+
+Plug 'Valloric/YouCompleteMe'
+Plug 'bronson/vim-visual-star-search'
 call plug#end()
 
 " =============== Visuals ===============
@@ -50,7 +55,12 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
-\ }
+    \ }
+" ctrlP opens tabs by default
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
 
 " vimtex
 let g:vimtex_view_method='zathura'
@@ -62,6 +72,17 @@ let g:tex_flavor = 'latex'
 Plug 'mhinz/neovim-remote'
 set spell spelllang=en_us
 set spellfile=~/.config/nvim/en.utf-8.add
+
+" trigger emmet using ',,'
+let g:user_emmet_leader_key=','
+
+" ycm
+noremap <leader>g :YcmCompleter GoTo <CR>
+noremap <leader>d :YcmCompleter GoToDefinition <CR>
+noremap <leader>c :YcmCompleter GoToDeclaration <CR>
+noremap <leader>i :YcmCompleter GoToImprecise <CR>
+noremap <leader>p :YcmCompleter GetParent <CR>
+noremap <leader>t :YcmCompleter GetType <CR>
 
 " =============== Tabs & Spaces ===============
 set expandtab
@@ -83,3 +104,10 @@ map <S-Tab> :bnext<CR>
 map <C-S-Tab> :bprev<CR>
 nmap <S-Tab> :bnext<CR>
 nmap <C-S-Tab> :bprev<CR>
+
+
+au BufNewFile,BufRead *.gpg setlocal noswapfile nobackup noundofile
+au BufNewFile,BufRead /dev/shm/pass.* setlocal noswapfile nobackup noundofile
+
+" no concealing!
+let g:tex_conceal = ""
