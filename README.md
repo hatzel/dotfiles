@@ -8,3 +8,6 @@ To link the dotfiles for one program (say vim) into your directory structure use
 stow vim
 ```
 This should be done in `~/dotfiles` otherwise it might not work.
+##VIM
+When using neovim make sure you also install the python module neovim to get YCM to work.
+This is possibly also required for correct power line behavior.
