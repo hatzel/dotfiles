@@ -196,5 +196,5 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Show toggl timetracking
-bindsym $mod+t [title="^Toggl Desktop$"] scratchpad show
-for_window [title="^Toggl Desktop$"] move scratchpad
+#bindsym $mod+t [title="^Toggl Desktop$"] scratchpad show
+for_window [title="^Toggl Desktop$"] floating enable
