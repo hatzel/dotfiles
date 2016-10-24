@@ -169,10 +169,14 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 #volume keys
-set $audiochannel Headphone
+set $audiochannel Master
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 set $audiochannel 2%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 set $audiochannel 2%-
 bindsym XF86AudioMute        exec --no-startup-id amixer -c 0 set $audiochannel togglemute
+
+# screen bightness:
+bindcode 232 exec --no-startup-id xbacklight -dec 1
+bindcode 233 exec --no-startup-id xbacklight -inc 1
 
 # Some windows need to be floating
 # R graphics output:
