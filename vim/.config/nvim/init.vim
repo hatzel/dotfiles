@@ -22,6 +22,8 @@ Plug 'mxw/vim-jsx'
 Plug 'rust-lang/rust.vim'
 Plug 'mitsuhiko/vim-python-combined'
 Plug 'lervag/vimtex'
+Plug 'andviro/flake8-vim'
+
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
 
