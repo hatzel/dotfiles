@@ -87,3 +87,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# Custom aliases
+alias vim="nvim"
+alias oldvim="vim"
+alias cclip="xclip -selection clipboard"
+alias gls="git status"
