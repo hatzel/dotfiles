@@ -1,6 +1,5 @@
 call plug#begin()
 " utility
-Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
@@ -22,6 +21,8 @@ Plug 'mxw/vim-jsx'
 Plug 'rust-lang/rust.vim'
 Plug 'mitsuhiko/vim-python-combined'
 Plug 'lervag/vimtex'
+Plug 'andviro/flake8-vim'
+
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
 
@@ -73,6 +74,8 @@ Plug 'mhinz/neovim-remote'
 set spell spelllang=en_us
 set spellfile=~/.config/nvim/en.utf-8.add
 
+" Leader
+let mapleader = ","
 " trigger emmet using ',,'
 let g:user_emmet_leader_key=','
 
@@ -100,14 +103,17 @@ vnoremap <C-c> "+y
 command! W  write
 
 " tab navigation
-map <S-Tab> :bnext<CR>
-map <C-S-Tab> :bprev<CR>
-nmap <S-Tab> :bnext<CR>
-nmap <C-S-Tab> :bprev<CR>
+map <S-Tab> :tabnext<CR>
+map <C-S-Tab> :tabprev<CR>
+nmap <S-Tab> :tabnext<CR>
+nmap <C-S-Tab> :tabprev<CR>
 
 
 au BufNewFile,BufRead *.gpg setlocal noswapfile nobackup noundofile
 au BufNewFile,BufRead /dev/shm/pass.* setlocal noswapfile nobackup noundofile
+
+" clear highlighting with double escape
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 " no concealing!
 let g:tex_conceal = ""
