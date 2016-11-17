@@ -111,3 +111,4 @@ au BufNewFile,BufRead /dev/shm/pass.* setlocal noswapfile nobackup noundofile
 
 " no concealing!
 let g:tex_conceal = ""
+set conceallevel=0
