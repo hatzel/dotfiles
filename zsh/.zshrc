@@ -55,7 +55,7 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh)
+plugins=(git ssh vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,6 +87,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# vi mode shorter timeout
+export KEYTIMEOUT=1
+
 # Custom aliases
 alias vim="nvim"
 alias oldvim="vim"
