@@ -31,6 +31,10 @@ Plug 'mattn/emmet-vim'
 
 Plug 'Valloric/YouCompleteMe'
 Plug 'bronson/vim-visual-star-search'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " =============== Visuals ===============
@@ -109,7 +113,7 @@ map <C-S-Tab> :tabprev<CR>
 nmap <S-Tab> :tabnext<CR>
 nmap <C-S-Tab> :tabprev<CR>
 
-
+" No cache for pass files
 au BufNewFile,BufRead *.gpg setlocal noswapfile nobackup noundofile
 au BufNewFile,BufRead /dev/shm/pass.* setlocal noswapfile nobackup noundofile
 
@@ -119,3 +123,8 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 " no concealing!
 let g:tex_conceal = ""
 set conceallevel=0
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-x>"

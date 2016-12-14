@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+MODE_INDICATOR="%{$fg_bold[red]%} NORMAL%{$reset_color%}"
+
+function vi_mode_prompt_info() {
+  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+}
+
 local LAMBDA="%(?,%{$fg_bold[green]%}λ,%{$fg_bold[red]%}λ)"
 if [[ "$USER" == "root" ]]; then USERCOLOR="red"; else USERCOLOR="yellow"; fi
 if [[ "$SSH_CONNECTION" ]]; then HOSTCOLOR="red"; else HOSTCOLOR="yellow"; fi
@@ -31,12 +37,12 @@ function get_right_prompt() {
 
 PROMPT='\
 ${LAMBDA}\
- %{$fg_bold[$USERCOLOR]%}%n@%{$fg_bold[$HOSTCOLOR]%}%m\
- %{$fg_no_bold[magenta]%}[%3~]\
+ %{$fg_bold[$USERCOLOR]%}%n%{$fg_no_bold[green]%}@%{$fg_bold[$HOSTCOLOR]%}%m\
+ %{$fg_no_bold[magenta]%}[%3~]$(vi_mode_prompt_info)\
  $(check_git_prompt_info)\
 %{$reset_color%}'
 
-RPROMPT='$(get_right_prompt)'
+RPROMPT=' $(get_right_prompt)'
 
 # Format for git_prompt_info()
 ZSH_THEME_GIT_PROMPT_PREFIX="at %{$fg[blue]%} "
