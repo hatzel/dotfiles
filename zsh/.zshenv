@@ -6,3 +6,6 @@ export EDITOR=nvim
 
 export PATH=$PATH:/opt/android-sdk/tools:/opt/android-sdk/platform-tools
 export PATH=$PATH:/home/hansole/.cargo/bin
+
+# racer needs to find the rust source
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
