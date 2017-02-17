@@ -3,6 +3,11 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-repeat'
+Plug 'Chiel92/vim-autoformat'
+
+" syntastic
+Plug 'vim-syntastic/syntastic'
 
 " ctrlP and accessories
 Plug 'kien/ctrlp.vim'
@@ -21,8 +26,8 @@ Plug 'mxw/vim-jsx'
 Plug 'rust-lang/rust.vim'
 Plug 'mitsuhiko/vim-python-combined'
 Plug 'lervag/vimtex'
-Plug 'andviro/flake8-vim'
 Plug 'tikhomirov/vim-glsl'
+Plug 'keith/swift.vim'
 
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
@@ -35,6 +40,7 @@ Plug 'bronson/vim-visual-star-search'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 call plug#end()
 
 " =============== Visuals ===============
@@ -81,8 +87,7 @@ set spellfile=~/.config/nvim/en.utf-8.add
 
 " Leader
 let mapleader = ","
-" trigger emmet using ',,'
-let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key='<C-E>'
 
 " ycm
 noremap <leader>g :YcmCompleter GoTo <CR>
@@ -101,6 +106,8 @@ set autoindent
 set smarttab
 
 " =============== Convenience Stuff ===============
+" autoformat
+noremap <Leader>f :Autoformat<CR>
 " copy and paste:
 vnoremap <C-c> "+y
 
@@ -123,6 +130,13 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 " no concealing!
 let g:tex_conceal = ""
 set conceallevel=0
+
+" syntastic
+let g:syntastic_check_on_open = 1
+let g:syntastic_python_checkers = ['flake8', 'python']
+
+" rust
+let g:syntastic_rust_checkers = ['cargo']
 
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-a>"
