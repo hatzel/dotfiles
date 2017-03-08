@@ -1093,8 +1093,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "LGUI",
-                    "label": "LGUI"
+                    "key": "RALT",
+                    "label": "RALT"
                 }
             }
         },

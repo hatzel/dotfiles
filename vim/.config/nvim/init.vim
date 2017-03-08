@@ -87,6 +87,7 @@ set spellfile=~/.config/nvim/en.utf-8.add
 
 " Leader
 let mapleader = ","
+let maplocalleader = "\\"
 let g:user_emmet_leader_key='<C-E>'
 
 " ycm

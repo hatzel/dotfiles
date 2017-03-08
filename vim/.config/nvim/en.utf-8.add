@@ -10,3 +10,5 @@ metadata
 NLTK
 Py4J
 PySpark
+audiobooks
+regex
