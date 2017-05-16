@@ -1,5 +1,5 @@
 # should be xterm-termite but some applications don't know that name...
-export TERM=xterm
+export TERM=xterm-256color
 
 # we like vim
 export EDITOR=nvim
