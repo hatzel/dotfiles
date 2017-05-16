@@ -29,7 +29,7 @@ bindsym $mod+m move workspace to output left
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -216,5 +216,7 @@ assign [class="TelegramDesktop"] 10:Chat
 assign [class="^Quassel IRC"] 10:Chat
 
 # Show toggl timetracking
+# For some reason classes won't work here :S
 bindsym $mod+t [title="^Toggl Desktop$"] scratchpad show
 for_window [title="^Toggl Desktop$"] floating enable
+for_window [title="^Toggl Desktop$"] move scratchpad
