@@ -70,7 +70,7 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Colors (Tomorrow Night Bright)
+# Colors (gruvbox)
 colors:
   # Default colors
   primary:
@@ -96,7 +96,7 @@ colors:
   # Bright colors
   bright:
     black:   '0x928374'
-    red:     '0x928374'
+    red:     '0xfb4934'
     green:   '0xb8bb26'
     yellow:  '0xfabd2f'
     blue:    '0x83a598'
