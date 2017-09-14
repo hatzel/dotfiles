@@ -5,9 +5,11 @@ Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" syntastic
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
+
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
 " ctrlP and accessories
 Plug 'kien/ctrlp.vim'
@@ -23,18 +25,18 @@ Plug 'Yggdroot/indentLine'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'mxw/vim-jsx'
-Plug 'rust-lang/rust.vim'
 Plug 'mitsuhiko/vim-python-combined'
 Plug 'lervag/vimtex'
 Plug 'tikhomirov/vim-glsl'
 Plug 'keith/swift.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'zchee/deoplete-jedi'
 
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
 
 Plug 'mattn/emmet-vim'
 
-Plug 'Valloric/YouCompleteMe'
 Plug 'bronson/vim-visual-star-search'
 
 " Snippets
@@ -90,14 +92,6 @@ let mapleader = ","
 let maplocalleader = "\\"
 let g:user_emmet_leader_key='<C-E>'
 
-" ycm
-noremap <leader>g :YcmCompleter GoTo <CR>
-noremap <leader>d :YcmCompleter GoToDefinition <CR>
-noremap <leader>c :YcmCompleter GoToDeclaration <CR>
-noremap <leader>i :YcmCompleter GoToImprecise <CR>
-noremap <leader>p :YcmCompleter GetParent <CR>
-noremap <leader>t :YcmCompleter GetType <CR>
-
 " =============== Tabs & Spaces ===============
 set expandtab
 set tabstop=4
@@ -132,14 +126,27 @@ nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 let g:tex_conceal = ""
 set conceallevel=0
 
-" syntastic
-let g:syntastic_check_on_open = 1
-let g:syntastic_python_checkers = ['flake8', 'python']
-
-" rust
-let g:syntastic_rust_checkers = ['cargo']
-
 " ultisnips
 let g:UltiSnipsExpandTrigger="<c-a>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-x>"
+
+" Language Client
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+\ }
+
+" Automatically start language servers.
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
