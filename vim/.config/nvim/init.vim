@@ -31,7 +31,7 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'keith/swift.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'zchee/deoplete-jedi'
-
+Plug 'leafgarland/typescript-vim'
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
 
@@ -150,3 +150,16 @@ set hidden
 let g:deoplete#enable_at_startup = 1
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
+\   '.env',
+\   'env',
+\   've-py3',
+\   've',
+\   'virtualenv',
+\   'venv',
+\])
+
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
