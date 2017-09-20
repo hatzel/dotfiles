@@ -36,6 +36,7 @@ bindsym $mod+Shift+q kill
 
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec --no-startup-id "rofi -show drun"
+bindsym $mod+y exec --no-startup-id "~/src/rofi-emoji/emoji.sh"
 # launch rofi-pass for password management
 bindsym $mod+p exec --no-startup-id rofi-pass
 
