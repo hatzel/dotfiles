@@ -6,7 +6,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-
+Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -163,3 +163,6 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 let g:ale_linters = {
 \   'python': ['flake8'],
 \}
+
+" nerdtree
+nnoremap <silent> <F6> :NERDTreeToggle<CR>
