@@ -32,6 +32,7 @@ Plug 'keith/swift.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'leafgarland/typescript-vim'
+Plug 'ElmCast/elm-vim'
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
 
