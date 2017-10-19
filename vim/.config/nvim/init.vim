@@ -33,6 +33,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'leafgarland/typescript-vim'
 Plug 'ElmCast/elm-vim'
+
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
 
@@ -138,7 +139,8 @@ let g:LanguageClient_serverCommands = {
 \ }
 
 " Automatically start language servers.
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_autoStart = 1
+let g:ale_completion_enabled = 1
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -163,6 +165,7 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 
 let g:ale_linters = {
 \   'python': ['flake8'],
+\   'rust': ['rls']
 \}
 
 " nerdtree
