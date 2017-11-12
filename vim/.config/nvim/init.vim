@@ -9,7 +9,9 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'w0rp/ale'
 
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'easymotion/vim-easymotion'
 
 " ctrlP and accessories
 Plug 'kien/ctrlp.vim'
@@ -33,6 +35,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'zchee/deoplete-jedi'
 Plug 'leafgarland/typescript-vim'
 Plug 'ElmCast/elm-vim'
+Plug 'cespare/vim-toml'
 
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
@@ -44,6 +47,7 @@ Plug 'bronson/vim-visual-star-search'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 
 call plug#end()
 
@@ -72,11 +76,7 @@ let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
     \ }
-" ctrlP opens tabs by default
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+let g:ctrlp_cmd = 'CtrlPMixed'
 
 " vimtex
 let g:vimtex_view_method='zathura'
@@ -108,14 +108,17 @@ noremap <Leader>f :Autoformat<CR>
 " copy and paste:
 vnoremap <C-c> "+y
 
+set smartcase " use smartcase for search
+
+" linenumbers
+set number
+
 " write with capital W
 command! W  write
 
 " tab navigation
-map <S-Tab> :tabnext<CR>
-map <C-S-Tab> :tabprev<CR>
-nmap <S-Tab> :tabnext<CR>
-nmap <C-S-Tab> :tabprev<CR>
+map <Tab> :bn<CR>
+map <S-Tab> :bp<CR>
 
 " No cache for pass files
 au BufNewFile,BufRead *.gpg setlocal noswapfile nobackup noundofile
@@ -154,6 +157,7 @@ let g:deoplete#enable_at_startup = 1
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" find directories named venv
 let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 \   '.env',
 \   'env',
