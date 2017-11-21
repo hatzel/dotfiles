@@ -24,7 +24,7 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 export ZSH=$HOME/.oh-my-zsh
 
 # Use liquidprompt
-source ~/dotfiles/liquidprompt
+source ~/dotfiles/bin/liquidprompt
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

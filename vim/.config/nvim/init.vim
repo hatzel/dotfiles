@@ -7,6 +7,7 @@ Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
@@ -22,6 +23,7 @@ Plug 'bling/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Yggdroot/indentLine'
+Plug 'luochen1990/rainbow'
 
 " language specific
 Plug 'pangloss/vim-javascript'
@@ -174,3 +176,11 @@ let g:ale_linters = {
 
 " nerdtree
 nnoremap <silent> <F6> :NERDTreeToggle<CR>
+" tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" Don't conceal json
+let g:vim_json_syntax_conceal = 0
+" Don't conceal markdown
+let g:vim_markdown_conceal = 0
+
