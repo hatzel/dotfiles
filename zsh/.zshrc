@@ -1,7 +1,10 @@
+eval "$(fasd --init auto)"
+
+#
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # ssh
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket) 
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # Start the gpg-agent if not already running
 if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
@@ -20,10 +23,8 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="lambda-mod"
+# Use liquidprompt
+source liquidprompt
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
