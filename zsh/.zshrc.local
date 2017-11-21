@@ -1,0 +1,7 @@
+# Custom aliases
+alias vim="nvim"
+alias oldvim="vim"
+alias cclip="xclip -selection clipboard"
+alias gls="git status"
+
+
