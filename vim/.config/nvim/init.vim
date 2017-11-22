@@ -11,6 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'godlygeek/tabular'
+Plug 'janko-m/vim-test'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
@@ -197,3 +198,10 @@ map F <Plug>Sneak_S
 
 " taste the rainbow (rainbow colored parantheses)
 let g:rainbow_active = 1
+
+" vim-test bindings
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
