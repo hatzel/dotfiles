@@ -9,6 +9,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
+Plug 'justinmk/vim-sneak'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
@@ -184,3 +185,6 @@ let g:vim_json_syntax_conceal = 0
 " Don't conceal markdown
 let g:vim_markdown_conceal = 0
 
+" vim sneak on f
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
