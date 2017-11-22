@@ -10,6 +10,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
+Plug 'godlygeek/tabular'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
@@ -19,11 +20,15 @@ Plug 'easymotion/vim-easymotion'
 Plug 'kien/ctrlp.vim'
 Plug 'DavidEGx/ctrlp-smarttabs'
 
+" git
+Plug 'tpope/vim-fugitive'
+" allow opening lines on github etc.
+Plug 'tpope/vim-rhubarb'
+
 " visuals
 Plug 'bling/vim-airline'
 Plug 'morhetz/gruvbox'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'Yggdroot/indentLine'
 Plug 'luochen1990/rainbow'
 
 " language specific
@@ -74,7 +79,13 @@ colorscheme gruvbox
 " =============== Plugin Configurations ===============
 " ctrlP config
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+if executable(":rg")
+    let g:ctrlp_user_command = "rg"
+elseif executable(":ag")
+    let g:ctrlp_user_command = "ag"
+endif
+
 let g:ctrlp_custom_ignore = {
 	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
 	\ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
@@ -180,11 +191,9 @@ nnoremap <silent> <F6> :NERDTreeToggle<CR>
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 
-" Don't conceal json
-let g:vim_json_syntax_conceal = 0
-" Don't conceal markdown
-let g:vim_markdown_conceal = 0
-
 " vim sneak on f
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
+
+" taste the rainbow (rainbow colored parantheses)
+let g:rainbow_active = 1
