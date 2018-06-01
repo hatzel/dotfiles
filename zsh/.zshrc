@@ -1,7 +1,10 @@
 eval "$(fasd --init auto)"
 
 #
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.cache/go/bin:$HOME/bin:/usr/local/bin:$PATH
+
+# go path
+export GOPATH=/home/hansole/.cache/go
 
 # ssh
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
