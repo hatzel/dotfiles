@@ -16,10 +16,11 @@ Plug 'eugen0329/vim-esearch'
 
 Plug 'ambv/black'
 
- Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
+Plug 'autozimu/LanguageClient-neovim', {
+\ 'branch': 'next',
+\ 'do': 'bash install.sh',
 \ }
+
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'easymotion/vim-easymotion'
@@ -63,6 +64,8 @@ Plug 'bronson/vim-visual-star-search'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'udalov/kotlin-vim'
 
 
 call plug#end()
@@ -213,10 +216,11 @@ nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 
-" Point to system python
-let g:python_host_prog = '/usr/bin/python'
-
 let g:go_fmt_autosave = 1
 
 " Python auto formater
 let g:black_linelength = 100
+
+" Work inside venv
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python'
