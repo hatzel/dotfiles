@@ -97,6 +97,9 @@ else
     set bg=light
 endif
 
+" Show tabs
+set list
+set listchars=tab:\|·
 
 " =============== Plugin Configurations ===============
 " ctrlP config
@@ -109,8 +112,8 @@ elseif executable(":ag")
 endif
 
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
     \ }
 let g:ctrlp_cmd = 'CtrlPMixed'
 
@@ -201,9 +204,7 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 \   've-py3',
 \   've',
 \   'virtualenv',
-\   'venv',
-\])
-
+\   'venv', \])
 let g:ale_linters = {
 \   'python': ['flake8'],
 \   'rust': ['rls'],
@@ -244,5 +245,14 @@ let g:loaded_youcompleteme = 1
 function TrimWhiteSpace()
   %s/\s\+$//e
 endfunction
-
 command Trim call TrimWhiteSpace()
+
+function SwitchToTabs()
+    set noexpandtab
+endfunction
+command Tabs call SwitchToTabs()
+
+function SwitchToSpaces()
+    set expandtab
+endfunction
+command Spaces call SwitchToSpaces()
