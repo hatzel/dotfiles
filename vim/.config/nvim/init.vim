@@ -15,9 +15,12 @@ Plug 'janko-m/vim-test'
 Plug 'eugen0329/vim-esearch'
 Plug 'qpkorr/vim-bufkill'
 
-" Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --system-libclang --system-boost --clang-completer' }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'easymotion/vim-easymotion'
 
@@ -78,11 +81,22 @@ let g:airline_powerline_fonts = 1
 " grovebox
 let g:gruvbox_bold=1
 let g:gruvbox_unterline=1
-let g:gruvbox_untercurl=1
+let g:gruvbox_untercurl= 1
 let g:gruvbox_italic=1
 let g:gruvbox_termcolors=1
-set background=dark
+
+let hostname = substitute(system("hostname"), "\n", "", "")
+let light_hostnames = ["falcon"]
+
+set termguicolors
 colorscheme gruvbox
+
+if index(light_hostnames, hostname) == -1
+    set bg=dark
+else
+    set bg=light
+endif
+
 
 " =============== Plugin Configurations ===============
 " ctrlP config
@@ -161,10 +175,11 @@ let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 " Language Client
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'go': ['go-langserver'],
 \ }
 
 " Automatically start language servers.
-" let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart = 1
 let g:ale_completion_enabled = 1
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
@@ -213,6 +228,11 @@ nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
+
+let g:go_fmt_autosave = 1
+
+" Python auto formater
+let g:black_linelength = 100
 
 " Work inside venv
 let g:python_host_prog = '/usr/bin/python2'
