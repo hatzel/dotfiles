@@ -13,10 +13,11 @@ Plug 'justinmk/vim-sneak'
 Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'eugen0329/vim-esearch'
-
-Plug 'ambv/black'
+Plug 'qpkorr/vim-bufkill'
 
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --system-libclang --system-boost --clang-completer' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 
 Plug 'easymotion/vim-easymotion'
 
@@ -36,6 +37,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'luochen1990/rainbow'
 
 " language specific
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'mxw/vim-jsx'
@@ -44,10 +46,13 @@ Plug 'lervag/vimtex'
 Plug 'tikhomirov/vim-glsl'
 Plug 'keith/swift.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'zchee/deoplete-jedi'
 Plug 'leafgarland/typescript-vim'
 Plug 'ElmCast/elm-vim'
 Plug 'cespare/vim-toml'
+Plug 'zchee/deoplete-jedi' " Python Completion
+Plug 'ambv/black'          " Python Formatter
+Plug 'udalov/kotlin-vim'
+Plug 'peterhoeg/vim-qml'
 
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
@@ -59,9 +64,6 @@ Plug 'bronson/vim-visual-star-search'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
-Plug 'udalov/kotlin-vim'
-
 
 call plug#end()
 
@@ -189,7 +191,8 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 
 let g:ale_linters = {
 \   'python': ['flake8'],
-\   'rust': ['rls']
+\   'rust': ['rls'],
+\   'cpp': ['clang-check']
 \}
 
 " nerdtree
@@ -214,3 +217,12 @@ nmap <silent> <leader>g :TestVisit<CR>
 " Work inside venv
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
+
+" Disable you complete me
+let g:loaded_youcompleteme = 1
+
+function TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+
+command Trim call TrimWhiteSpace()
