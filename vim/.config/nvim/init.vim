@@ -14,13 +14,12 @@ Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'eugen0329/vim-esearch'
 Plug 'kergoth/vim-bitbake'
+Plug 'qpkorr/vim-bufkill'
 
-Plug 'ambv/black'
 
-Plug 'autozimu/LanguageClient-neovim', {
-\ 'branch': 'next',
-\ 'do': 'bash install.sh',
-\ }
+Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --system-libclang --system-boost --clang-completer' }
+
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
@@ -42,6 +41,7 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'luochen1990/rainbow'
 
 " language specific
+Plug 'dart-lang/dart-vim-plugin'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
 Plug 'mxw/vim-jsx'
@@ -50,10 +50,13 @@ Plug 'lervag/vimtex'
 Plug 'tikhomirov/vim-glsl'
 Plug 'keith/swift.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'zchee/deoplete-jedi'
 Plug 'leafgarland/typescript-vim'
 Plug 'ElmCast/elm-vim'
 Plug 'cespare/vim-toml'
+Plug 'zchee/deoplete-jedi' " Python Completion
+Plug 'ambv/black'          " Python Formatter
+Plug 'udalov/kotlin-vim'
+Plug 'peterhoeg/vim-qml'
 
 " Needed for communication with latexmk
 Plug 'mhinz/neovim-remote'
@@ -65,9 +68,6 @@ Plug 'bronson/vim-visual-star-search'
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
-Plug 'udalov/kotlin-vim'
-
 
 call plug#end()
 
@@ -82,11 +82,25 @@ let g:airline_powerline_fonts = 1
 " grovebox
 let g:gruvbox_bold=1
 let g:gruvbox_unterline=1
-let g:gruvbox_untercurl=1
+let g:gruvbox_untercurl= 1
 let g:gruvbox_italic=1
 let g:gruvbox_termcolors=1
-set background=light
+
+let hostname = substitute(system("hostname"), "\n", "", "")
+let light_hostnames = ["falcon"]
+
+set termguicolors
 colorscheme gruvbox
+
+if index(light_hostnames, hostname) == -1
+    set bg=dark
+else
+    set bg=light
+endif
+
+" Show tabs
+set list
+set listchars=tab:\|·
 
 " =============== Plugin Configurations ===============
 " ctrlP config
@@ -99,8 +113,8 @@ elseif executable(":ag")
 endif
 
 let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
     \ }
 let g:ctrlp_cmd = 'CtrlPMixed'
 
@@ -196,6 +210,8 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 
 let g:ale_linters = {
 \   'python': ['flake8'],
+\   'rust': ['rls'],
+\   'cpp': ['clang-check']
 \}
 
 " nerdtree
@@ -225,3 +241,21 @@ let g:black_linelength = 100
 " Work inside venv
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python'
+
+" Disable you complete me
+let g:loaded_youcompleteme = 1
+
+function TrimWhiteSpace()
+  %s/\s\+$//e
+endfunction
+command Trim call TrimWhiteSpace()
+
+function SwitchToTabs()
+    set noexpandtab
+endfunction
+command Tabs call SwitchToTabs()
+
+function SwitchToSpaces()
+    set expandtab
+endfunction
+command Spaces call SwitchToSpaces()
