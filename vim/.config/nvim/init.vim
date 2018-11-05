@@ -13,6 +13,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'eugen0329/vim-esearch'
+Plug 'kergoth/vim-bitbake'
 
 Plug 'ambv/black'
 
