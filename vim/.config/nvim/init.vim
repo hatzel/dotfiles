@@ -165,6 +165,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'go': ['go-langserver'],
+    \ 'python': ['pyls'],
 \ }
 
 " Automatically start language servers.
