@@ -14,19 +14,20 @@ Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'eugen0329/vim-esearch'
 Plug 'qpkorr/vim-bufkill'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'zxqfl/tabnine-vim'
 
-
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --system-libclang --system-boost --clang-completer' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ }
+" Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --system-libclang --system-boost --clang-completer' }
 
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 Plug 'easymotion/vim-easymotion'
-
-" ctrlP and accessories
-Plug 'kien/ctrlp.vim'
-Plug 'DavidEGx/ctrlp-smarttabs'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -102,20 +103,11 @@ set list
 set listchars=tab:\|·
 
 " =============== Plugin Configurations ===============
-" ctrlP config
-let g:ctrlp_working_path_mode = 'ra'
-
-if executable(":rg")
-    let g:ctrlp_user_command = "rg"
-elseif executable(":ag")
-    let g:ctrlp_user_command = "ag"
-endif
-
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(exe|so|dll|aux|flx|out|pdf)$',
-    \ }
-let g:ctrlp_cmd = 'CtrlPMixed'
+" bind fzf to ctrl+p
+noremap <silent> <C-P> :FZF<CR>
+nnoremap <silent> <C-P> :FZF<CR>
+vnoremap <silent> <C-P> :FZF<CR>
+inoremap <silent> <C-P> :FZF<CR>
 
 " vimtex
 let g:vimtex_view_method='zathura'
@@ -175,16 +167,20 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 
+let g:UltiSnipsEditSplit="vertical"
+
 " Language Client
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['rls'],
     \ 'go': ['go-langserver'],
+    \ 'python': ['pyls'],
 \ }
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
 let g:ale_completion_enabled = 1
 
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
@@ -211,7 +207,6 @@ let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
 \   'python': ['flake8'],
-\   'rust': ['rls'],
 \   'cpp': ['clang-check']
 \}
 
@@ -246,17 +241,23 @@ let g:python3_host_prog = '/usr/bin/python'
 " Disable you complete me
 let g:loaded_youcompleteme = 1
 
-function TrimWhiteSpace()
+function! TrimWhiteSpace()
   %s/\s\+$//e
 endfunction
-command Trim call TrimWhiteSpace()
+command! Trim call TrimWhiteSpace()
 
-function SwitchToTabs()
+function! SwitchToTabs()
     set noexpandtab
 endfunction
-command Tabs call SwitchToTabs()
+command! Tabs call SwitchToTabs()
 
-function SwitchToSpaces()
+function! SwitchToSpaces()
     set expandtab
 endfunction
-command Spaces call SwitchToSpaces()
+command! Spaces call SwitchToSpaces()
+
+" Reload on save:
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
