@@ -204,7 +204,11 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 \   've-py3',
 \   've',
 \   'virtualenv',
-\   'venv', \])
+\   'venv',
+\])
+
+let g:ale_linters_explicit = 1
+
 let g:ale_linters = {
 \   'python': ['flake8'],
 \   'rust': ['rls'],
