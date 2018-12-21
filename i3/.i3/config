@@ -38,6 +38,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 bindsym $mod+d exec --no-startup-id "rofi -show drun"
 bindsym $mod+y exec --no-startup-id "~/src/rofi-emoji/emoji.sh"
+bindsym $mod+c exec --no-startup-id "rofi -show calc -modi calc -no-show-match -no-sort"
 # launch rofi-pass for password management
 bindsym $mod+p exec --no-startup-id rofi-pass
 
@@ -185,7 +186,7 @@ bindcode 233 exec --no-startup-id xbacklight -inc 1
 for_window [class="R_x11" instance="r_x11"] floating enable
 
 # lib notify
-exec --no-startup-id dunst
+exec --no-startup-id dunst .config/dunstrc
 
 # Colorscheme
 client.focused #458588 #458588 #282828 #282828
@@ -213,13 +214,15 @@ exec --no-startup-id i3-msg 'workspace 8:Mail; exec thunderbird'
 assign [class="Thunderbird"] 8:Mail
 
 # 10 Chat and stuff
-exec --no-startup-id i3-msg 'workspace 10:Chat; exec quasselclient; exec telegram-desktop'
 assign [class="TelegramDesktop"] 10:Chat
 assign [class="Riot"] 10:Chat
+assign [class="^Mumble"] 10:Chat
 assign [class="^Quassel IRC"] 10:Chat
 
 # Show toggl timetracking
 # For some reason classes won't work here :S
 bindsym $mod+t [title="^Toggl Desktop$"] scratchpad show
 for_window [title="^Toggl Desktop$"] floating enable
+for_window [title="^Android Emulator -"] floating enable
 for_window [title="^Toggl Desktop$"] move scratchpad
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
