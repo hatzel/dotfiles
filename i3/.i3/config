@@ -1,5 +1,6 @@
 #load xmodmap
 exec --no-startup-id 'rescuetime'
+exec --no-startup-id 'riot-desktop'
 exec --no-startup-id xmodmap ~/.Xmodmap
 set $mod Mod4
 
@@ -214,6 +215,7 @@ assign [class="Thunderbird"] 8:Mail
 # 10 Chat and stuff
 exec --no-startup-id i3-msg 'workspace 10:Chat; exec quasselclient; exec telegram-desktop'
 assign [class="TelegramDesktop"] 10:Chat
+assign [class="Riot"] 10:Chat
 assign [class="^Quassel IRC"] 10:Chat
 
 # Show toggl timetracking
