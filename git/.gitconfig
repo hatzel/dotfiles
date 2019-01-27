@@ -5,6 +5,7 @@
     default = simple
 [core]
     editor = nvim
+	excludesfile = /home/hansole/.gitignore_global
 [color]
     ui = true
 [alias]
