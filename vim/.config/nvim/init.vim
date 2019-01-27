@@ -167,13 +167,12 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 
-let g:UltiSnipsEditSplit="vertical"
-
 " Language Client
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rls'],
     \ 'go': ['go-langserver'],
     \ 'python': ['pyls'],
+    \ 'c': ['clangd'],
 \ }
 
 " Automatically start language servers.
@@ -206,7 +205,6 @@ let g:ale_virtualenv_dir_names = get(g:, 'ale_virtualenv_dir_names', [
 let g:ale_linters_explicit = 1
 
 let g:ale_linters = {
-\   'python': ['flake8'],
 \   'cpp': ['clang-check']
 \}
 
