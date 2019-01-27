@@ -7,21 +7,25 @@ Plug 'tpope/vim-repeat'
 Plug 'Chiel92/vim-autoformat'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'scrooloose/nerdtree'
-Plug 'majutsushi/tagbar'
+" Disable for now, seems to cause issues with rust
+" Plug 'majutsushi/tagbar'
 Plug 'w0rp/ale'
 Plug 'justinmk/vim-sneak'
 Plug 'godlygeek/tabular'
 Plug 'janko-m/vim-test'
 Plug 'eugen0329/vim-esearch'
+Plug 'kergoth/vim-bitbake'
 Plug 'qpkorr/vim-bufkill'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'zxqfl/tabnine-vim'
+Plug 'ciaranm/detectindent'
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'rev': 'next',
     \ 'build': 'bash install.sh',
     \ }
+call plug#end()
 " Plug 'Valloric/YouCompleteMe', { 'do': 'python2 install.py --system-libclang --system-boost --clang-completer' }
 
 
@@ -211,7 +215,7 @@ let g:ale_linters = {
 " nerdtree
 nnoremap <silent> <F6> :NERDTreeToggle<CR>
 " tagbar
-nmap <F8> :TagbarToggle<CR>
+" nmap <F8> :TagbarToggle<CR>
 
 " vim sneak on f
 map f <Plug>Sneak_s
