@@ -5,16 +5,6 @@ icons = "awesome"
 block = "pacman"
 
 [[block]]
-device = "/sys/class/power_supply/BAT1"
-block = "battery"
-format = "{percentage}%: {time} ({power}W)"
-
-[[block]]
-device = "/sys/class/power_supply/BAT0"
-block = "battery"
-format = "{percentage}%: {time} ({power}W)"
-
-[[block]]
 block = "disk_space"
 path = "/"
 info_type = "available"
@@ -29,6 +19,18 @@ info = 99
 interval = 1
 
 [[block]]
+block = "nvidia_gpu"
+label = "RTX 2080"
+show_memory = false
+show_clocks = true
+interval = 1
+
+[[block]]
+block = "music"
+player = "spotify"
+buttons = ["play", "next"]
+
+[[block]]
 block = "memory"
 display_type = "memory"
 format_mem = "{Mup}%"
@@ -36,7 +38,7 @@ clickable = false
 
 [[block]]
 block = "net"
-device = "wlp3s0"
+device = "enp0s31f6"
 ssid = true
 ip = true
 speed_up = false
@@ -50,9 +52,4 @@ format = "%a, %d-%m-%y %H:%M"
 
 [[block]]
 block = "sound"
-step_width = 1
-
-[[block]]
-block = "backlight"
-device = "intel_backlight"
 step_width = 1
