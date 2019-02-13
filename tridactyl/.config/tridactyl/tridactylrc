@@ -1,0 +1,23 @@
+sanitise tridactyllocal tridactylsync
+
+" Normal search
+unbind <C-f>
+
+" Neovim in termite
+set editorcmd termite -e 'nvim %f'
+
+
+" Only hint search results on Google
+bindurl www.google.com f hint -Jc .rc > .r > a
+bindurl www.google.com F composite hint -Jpipe .rc>.r>a href | tabopen | buffer #<Paste>
+
+" Donate some smiles
+autocmd DocStart www.amazon.de js tri.excmds.urlmodify("-t", "www", "smile")
+
+" Dark theme
+set theme dark
+
+" Don't obstruct search:
+guiset hoverlink top-right
+
+" vim: set filetype=vim:
