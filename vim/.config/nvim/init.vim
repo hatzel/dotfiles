@@ -197,6 +197,7 @@ let g:LanguageClient_serverCommands = {
     \ 'go': ['go-langserver'],
     \ 'python': ['pyls'],
     \ 'c': ['clangd'],
+    \ 'dart': ['dart_language_server'],
 \ }
 
 " Automatically start language servers.
@@ -283,3 +284,11 @@ augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc,init.vim so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+" Flutter auto reload
+function! TriggerHotReload() abort
+    silent execute '!kill -SIGUSR1 $(pgrep -f "flutter_tools.snapshot attach") &> /dev/null'
+endfunction
+
+" Automatically reload on save of dart files
+autocmd BufWritePost *.dart call TriggerHotReload()
