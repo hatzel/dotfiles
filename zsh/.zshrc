@@ -7,7 +7,7 @@ export PATH=$HOME/.cache/go/bin:$HOME/bin:/usr/local/bin:$PATH
 export GOPATH=/home/hansole/.cache/go
 
 # ssh
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # Start the gpg-agent if not already running
 if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
@@ -71,7 +71,10 @@ ZSH_CUSTOM=~/.zsh_custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git vi-mode ssh-agent)
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent lifetime 30m
 
 source $ZSH/oh-my-zsh.sh
 
