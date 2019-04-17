@@ -107,11 +107,31 @@ set list
 set listchars=tab:\|·
 
 " =============== Plugin Configurations ===============
+" Open fzf but make sure to switch from a NERD_tree buffer first
+" so we don't end up opening the file in the sidebar
+function! FZFOpen(command_str)
+    if (expand('%') =~# 'NERD_tree' && winnr('$') > 1)
+        exe "normal! \<c-w>\<c-w>"
+    endif
+    exe 'normal! ' . a:command_str . "\<cr>"
+endfunction
+
 " bind fzf to ctrl+p
-noremap <silent> <C-P> :FZF<CR>
-nnoremap <silent> <C-P> :FZF<CR>
-vnoremap <silent> <C-P> :FZF<CR>
-inoremap <silent> <C-P> :FZF<CR>
+nnoremap <silent> <C-P> :call FZFOpen(":FZF")<CR>
+vnoremap <silent> <C-P> :call FZFOpen(":FZF")<CR>
+inoremap <silent> <C-P> :call FZFOpen(":FZF")<CR>
+
+nnoremap <silent> <C-B> :call FZFOpen(":Buffers")<CR>
+vnoremap <silent> <C-B> :call FZFOpen(":Buffers")<CR>
+inoremap <silent> <C-B> :call FZFOpen(":Buffers")<CR>
+
+nnoremap <silent> <C-G>s :call FZFOpen(":Rg")<CR>
+vnoremap <silent> <C-G>s :call FZFOpen(":Rg")<CR>
+inoremap <silent> <C-G>s :call FZFOpen(":Rg")<CR>
+
+nnoremap <silent> <C-G>l :call FZFOpen(":BLines")<CR>
+vnoremap <silent> <C-G>l :call FZFOpen(":BLines")<CR>
+inoremap <silent> <C-G>l :call FZFOpen(":BLines")<CR>
 
 " vimtex
 let g:vimtex_view_method='zathura'
