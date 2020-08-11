@@ -1,0 +1,17 @@
+{
+  "coc.preferences.minTriggerInputLength": 4,
+  "diagnostic.virtualText": false,
+  "diagnostic.joinMessageLines": true,
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.messageTarget": "float",
+  "diagnostic.level": "information",
+  "suggest.autoTrigger": "none",
+  "signature.enable": false,
+  "coc.preferences.snippets.enable": true,
+  "rust-analyzer.diagnostics.enable": true,
+  "rust-analyzer.serverPath": "/usr/bin/rust-analyzer",
+  "python.venvPath": "/home/hansole/.cache/pypoetry/virtualenvs/",
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.formatting.provider": "black",
+}
