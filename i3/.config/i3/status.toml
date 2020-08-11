@@ -46,10 +46,10 @@ speed_down = false
 interval = 1
 
 [[block]]
+block = "sound"
+step_width = 1
+
+[[block]]
 block = "time"
 interval = 60
 format = "%a, %d-%m-%y %H:%M"
-
-[[block]]
-block = "sound"
-step_width = 1
