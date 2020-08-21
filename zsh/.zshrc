@@ -1,118 +1,40 @@
-eval "$(fasd --init auto)"
+source ~/.zplug/init.zsh
 
-#
-export PATH=$HOME/.cache/go/bin:$HOME/bin:/usr/local/bin:$PATH
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "nojhan/liquidprompt"
+zplug "plugins/vi-mode", from:oh-my-zsh
+zplug "skywind3000/z.lua"
 
-# go path
-export GOPATH=/home/hansole/.cache/go
+zplug load
 
-# ssh
-# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=$HISTSIZE
+setopt inc_append_history
+setopt share_history
+setopt extended_history
+setopt no_hist_beep
+setopt hist_ignore_space
 
-# Start the gpg-agent if not already running
-if ! pgrep -x -u "${USER}" gpg-agent >/dev/null 2>&1; then
-  gpg-connect-agent /bye >/dev/null 2>&1
-fi
-# Set GPG TTY
-export GPG_TTY=$(tty)
+# Overwrite zsh plugin functions to get working indication with liquidprompt
+function zle-line-init zle-keymap-select {
+    VI_KEYMAP=$KEYMAP
+    MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
 
-# Refresh gpg-agent tty in case user switches into an X session
-gpg-connect-agent updatestartuptty /bye >/dev/null
+    RPS1="${${VI_KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+    RPS2=$RPS1
+    zle reset-prompt
+    zle -R
+}
 
+zle -N zle-line-init
+zle -N zle-keymap-select
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+autoload -Uz compinit && compinit
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Make sure to do this after compinit
+eval "$(lua $ZPLUG_REPOS/skywind3000/z.lua/z.lua --init zsh enhanced)"
 
-# Use liquidprompt
-source ~/dotfiles/bin/liquidprompt
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.zsh_custom
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode ssh-agent)
-
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent lifetime 30m
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# vi mode shorter timeout
-export KEYTIMEOUT=1
-
-# Custom aliases
-alias vim="nvim"
-alias oldvim="vim"
-alias cclip="xclip -selection clipboard"
-alias gls="git status"
-alias sc="sudo systemctl"
+# Add gpg and ssh keys
+eval $(keychain --eval --timeout 30 --agents ssh,gpg -Q --quiet id_rsa 6B2BA2211144ED18)
